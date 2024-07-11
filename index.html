@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Testing this</title>
+    <meta
+name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+$color-dark: #333344;
+
+html, body
+{
+	margin: 0;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	font-family: 'Comfortaa', cursive;
+}
+
+#container
+{
+	width: 100%;
+	height: 100%;
+	
+	#score
+	{
+		position: absolute;
+		top: 20px;
+		width: 100%;
+		text-align: center;
+		font-size: 10vh;
+		transition: transform 0.5s ease;
+		color: $color-dark;
+		transform: translatey(-200px) scale(1);
+	}
+
+	#game
+	{
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+	
+	.game-over
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 85%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		
+		*
+		{
+			transition: opacity 0.5s ease, transform 0.5s ease;
+			opacity: 0;
+			transform: translatey(-50px);
+			color: $color-dark;
+		}
+		
+		h2
+		{
+			margin: 0;
+			padding: 0;
+			font-size: 40px;
+		}
+	}
+	
+	.game-ready
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		
+		#start-button
+		{
+			transition: opacity 0.5s ease, transform 0.5s ease;
+			opacity: 0;
+			transform: translatey(-50px);
+			
+			border: 3px solid $color-dark;
+			padding: 10px 20px;
+			background-color: transparent;
+			color: $color-dark;
+			font-size: 30px;
+		}
+	}
+	
+	#instructions
+	{
+		position: absolute;
+		width: 100%;
+		top: 16vh;
+		left: 0;
+		text-align: center;
+		transition: opacity 0.5s ease, transform 0.5s ease;
+		
+		opacity: 0;
+		
+		&.hide
+		{
+			opacity: 0 !important;
+		}
+	}
+	
+	&.playing, &.resetting
+	{
+		#score
+		{
+			transform: translatey(0px) scale(1);
+		}
+	}
+	
+	&.playing
+	{
+		#instructions
+		{
+			opacity: 1;
+		}
+	}
+	
+	&.ready
+	{
+		
+		
+		.game-ready
+		{
+			#start-button
+			{
+				opacity: 1;
+				transform: translatey(0);
+			}
+		}
+	}
+	
+	&.ended
+	{
+		#score
+		{
+			transform: translatey(6vh) scale(1.5);
+		}
+		
+		.game-over
+		{
+			*
+			{
+				opacity: 1;
+				transform: translatey(0);
+			}
+			
+			p
+			{
+				transition-delay: 0.3s;
+			}
+		}
+	}
+}
+
+
+    </style>
+    <h1> This is the start of the game </h1>
+    .tic-tac-toe
+  - for (var turn = 1; turn <= 9; turn++)
+    - for (var row = 1; row <= 3; row++)
+      - for (var column = 1; column <= 3; column++)
+        - var player = "1"
+        - var positionHorizontal = ""
+        - var positionVertical = ""
+        - var positionDiagonal = ""
+        
+        if( turn % 2 == 0 )
+          - var player = "2"
+          
+        if( column == 1 )
+          - var positionHorizontal = " left first-column"
+        else if( column == 2 )
+          - var positionHorizontal = " middle second-column"
+        else if( column == 3 )
+          - var positionHorizontal = " right third-column"
+         
+        if( row == 1 )
+          - var positionVertical = " top first-row"
+        else if( row == 2 )
+          - var positionVertical = " center second-row"
+        else if( row == 3 )
+          - var positionVertical = " bottom third-row"
+        
+        if( row == 1 && column == 1 )
+          - var positionDiagonal = " first-diagonal"
+        else if( row == 1 && column == 3 )
+          - var positionDiagonal = " second-diagonal"
+        else if( row == 2 && column == 2 )
+          - var positionDiagonal = " first-diagonal second-diagonal"
+        else if( row == 3 && column == 1 )
+          - var positionDiagonal = " second-diagonal"
+        else if( row == 3 && column == 3 )
+          - var positionDiagonal = " first-diagonal"
+        
+        input(id="block" + turn + "-" + row + "-" + column type="radio" class="player-" + player + positionHorizontal + positionVertical + positionDiagonal + " turn-" + turn)
+        label(for="block" + turn + "-" + row + "-" + column class="turn-" + turn)
+
+  .end
+    h3
+    a(href="") Restart
+    
+h5 Note: use the Full Page view for the best experience.
+  </body>
+</html>
